@@ -101,7 +101,23 @@ class GoogleDriveUpload(GoogleDriveHelper):
                 ).execute()
             return
         if self._is_errored:
-            return
+                    return
+            if Config.AUTO_DELETE:
+                await asyncio.sleep(60)
+                if ospath.isfile(self._path):
+                    try:
+                        remove(self._path)
+                        LOGGER.info(f"File deleted: {self._path}")
+                    except Exception as e:
+                        LOGGER.error(f"Error deleting file: {e}")
+                else:
+                    try:
+                        shutil.rmtree(self._path, ignore_errors=True)
+                        LOGGER.info(f"Folder deleted: {self._path}")
+                    except Exception as e:
+                        LOGGER.error(f"Error deleting folder: {e}")
+        # AUTO DELETE END
+            
         async_to_sync(
             self.listener.on_upload_complete,
             link,
