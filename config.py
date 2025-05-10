@@ -42,7 +42,7 @@ HYDRA_API_KEY = ""
 INSTADL_API = ""
 
 # GDrive Tools
-GDRIVE_ID = ""
+GDRIVE_ID = "1k8jjHGYRWA6mn5nsodprhnHWkwxuSrzv"
 IS_TEAM_DRIVE = True # Set True useing Shared Drive 
 STOP_DUPLICATE = True # Recommended For Heavy Usage
 INDEX_URL = ""
